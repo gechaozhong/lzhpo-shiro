@@ -1,6 +1,9 @@
 package com.lzhpo.common.run.start;
 
+import com.lzhpo.common.aspect.LogAspect;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -21,6 +24,7 @@ public class ApplicationRunnerImpl implements ApplicationRunner {
 
     @Value("${server.port}")
     private Integer serverPort;
+    private Logger logger = LoggerFactory.getLogger(ApplicationRunnerImpl.class);
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -51,7 +55,7 @@ public class ApplicationRunnerImpl implements ApplicationRunner {
         try {
             localHost = Inet4Address.getLocalHost();
         } catch (UnknownHostException e) {
-            log.error(e.getMessage(),e);
+            logger.error(e.getMessage(),e);
         }
         assert localHost != null;
         String ip = localHost.getHostAddress();
