@@ -31,9 +31,9 @@ spring:
         connection-timeout: 30000
         connection-test-query: SELECT 1
   redis:
-    host: localhost
+    host: 192.168.1.17
     port: 6379
-    password: 123456
+    password: asd.1234
     database: 2
     timeout: 30000
     lettuce:

@@ -3,9 +3,12 @@ package com.lzhpo.common.config;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.parser.ParserConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.lzhpo.common.run.start.ApplicationRunnerImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
@@ -40,7 +43,7 @@ import java.util.Map;
 @ConditionalOnClass(RedisOperations.class)
 @EnableConfigurationProperties(RedisProperties.class)
 public class RedisConfig extends CachingConfigurerSupport {
-
+    private Logger log = LoggerFactory.getLogger(RedisConfig.class);
     /**
      *  设置 redis 数据默认过期时间，默认2小时
      *  设置@cacheable 序列化方式
@@ -170,7 +173,6 @@ class FastJsonRedisSerializer<T> implements RedisSerializer<T> {
  * @author /
  */
 class StringRedisSerializer implements RedisSerializer<Object> {
-
     private final Charset charset;
 
     StringRedisSerializer() {
