@@ -9,9 +9,9 @@ spring:
   aop:
     proxy-target-class: true
   datasource:
-      url: jdbc:mysql://localhost:3306/lzhpo-shiro?useSSL=false&serverTimezone=CTT&useUnicode=true&characterEncoding=utf8
+      url: jdbc:mysql://47.105.190.121:3306/lzhpo-shiro?useSSL=false&serverTimezone=CTT&useUnicode=true&characterEncoding=utf8
       username: root
-      password: 123456
+      password: asd.1234
       type: com.zaxxer.hikari.HikariDataSource
       # hikari连接池配置
       hikari:
