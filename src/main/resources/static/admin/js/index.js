@@ -277,7 +277,7 @@ layui.config({
 
     //关闭其他
     $(".closePageOther").on("click",function(){
-        if($("#top_tabs li").length>2 && $("#top_tabs li.layui-this cite").text()!="后台首页"){
+        if($("#top_tabs li").length>2 && $("#top_tabs li.layui-this cite").text()!="首页"){
             var menu = JSON.parse(window.sessionStorage.getItem("menu"));
             $("#top_tabs li").each(function(){
                 if($(this).attr("lay-id") != '' && !$(this).hasClass("layui-this")){
@@ -291,7 +291,7 @@ layui.config({
                     }
                 }
             })
-        }else if($("#top_tabs li.layui-this cite").text()=="后台首页" && $("#top_tabs li").length>1){
+        }else if($("#top_tabs li.layui-this cite").text()=="首页" && $("#top_tabs li").length>1){
             $("#top_tabs li").each(function(){
                 if($(this).attr("lay-id") != '' && !$(this).hasClass("layui-this")){
                     element.tabDelete("bodyTab",$(this).attr("lay-id")).init();
