@@ -103,7 +103,7 @@ public class LonginController {
         }
         if(LoginTypeEnum.ADMIN.name().equals(loginType)) {
             AuthRealm.ShiroUser principal = (AuthRealm.ShiroUser) SecurityUtils.getSubject().getPrincipal();
-            session.setAttribute("icon",StringUtils.isBlank(principal.getIcon()) ? "/static/admin/img/face.jpg" : principal.getIcon());
+            session.setAttribute("icon",StringUtils.isBlank(principal.getIcon()) ? "/static/admin/img/face.png" : principal.getIcon());
             return "admin/index";
         }else {
             return "index";
