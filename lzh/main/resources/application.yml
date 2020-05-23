@@ -38,4 +38,3 @@ mybatis-plus:
 #日志
 logging:
   config: classpath:logback.xml
-  path: D:\logs\comadmin

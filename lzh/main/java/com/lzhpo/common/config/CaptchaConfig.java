@@ -46,7 +46,7 @@ public class CaptchaConfig {
 
     public static class CustomObscurificator extends Configurable implements GimpyEngine {
 
-        @Override
+
         public BufferedImage getDistortedImage(BufferedImage baseImage) {
             BufferedImage distortedImage = new BufferedImage(baseImage.getWidth(),
                     baseImage.getHeight(), BufferedImage.TYPE_INT_ARGB);
