@@ -38,7 +38,7 @@
       </otherwise>
     </choose>
     and m.is_show = true
-    order by m.sort desc
+    order by m.sort ASC
   </select>
 
   <resultMap type="com.lzhpo.admin.entity.Menu" id="resultMenus">
