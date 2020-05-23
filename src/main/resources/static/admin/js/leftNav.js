@@ -10,7 +10,7 @@ function navBar(strData){
         if(data[i].spread){
             ulHtml += '<li class="layui-nav-item layui-nav-itemed">';
         }else{
-            ulHtml += '<li class="layui-nav-item">';
+            ulHtml += '<li class="layui-nav-item layui-nav-itemed">';
         }
         if(data[i].children != undefined && data[i].children.length > 0){
             ulHtml += '<a href="javascript:;">';
