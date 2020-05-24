@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
-
+<head>
     <meta charset="utf-8">
     <title>社保信息管理</title>
     <meta name="renderer" content="webkit">
@@ -22,9 +22,9 @@
             <button type="button" class="layui-btn layui-btn-normal" id="test8">选择文件</button>
             <button type="button" class="layui-btn" id="test9">开始上传</button>
 
-            <button type="button" class="layui-btn" style="margin-left:100px;" onclick="click1()">用工详情</button>
-            <button type="button" class="layui-btn" onclick="click2()">在职工人</button>
-            <button type="button" class="layui-btn">离职工人</button>
+            <button type="button" class="layui-btn" style="margin-left:100px;" onclick="click1()">备案一</button>
+            <button type="button" class="layui-btn" onclick="click2()">备案二</button>
+            <button type="button" class="layui-btn" onclick="click3()">备案三</button>
         </div>
         <div >
             <label >审核状态：</label>
@@ -39,8 +39,8 @@
 
 </div>
 <div >
-    <div id="ifrPage1" style="margin: auto">
-       <iframe style="width: 99%;height: 800px"  name="ifrPage"  src="table"></iframe>
+    <div id="ifrPage1" style="margin: auto;">
+       <iframe style="width: 99%;height: 800px; padding: 10px  "  name="ifrPage"  src="table"></iframe>
     </div>
 </div>
 <div id="page"></div>
@@ -49,15 +49,16 @@
 
     function click1() {
 
-        document.getElementById('ifrPage1').innerHTML = "<iframe src='table'"+"style='width: 99%;height: 800px;'"+"></iframe>";
+        document.getElementById('ifrPage1').innerHTML = "<iframe src='table'"+"style='width: 99%;height: 800px;padding: 10px'"+"></iframe>";
     };
+
     function click2() {
 
-        document.getElementById('ifrPage1').innerHTML = "<iframe src='currentExeclDetail'"+"style='width: 99%;height: 800px;'"+"></iframe>";
+        document.getElementById('ifrPage1').innerHTML = "<iframe src='currentEmployees'"+"style='width: 99%;height: 800px;'"+"></iframe>";
     };
-    function click3() {
 
-        document.getElementById('ifrPage1').innerHTML = "<iframe src='currentExeclDetail'"+"style='width: 100%;height: 800px;'"+"></iframe>";
+    function click3() {
+        document.getElementById('ifrPage1').innerHTML = "<iframe src='resignedEmployees'"+"style='width: 99%;height: 800px;padding: 10px'"+"></iframe>";
     };
 </script>
 <script type="text/javascript" th:src="@{/static/layui/layui.js}"></script>
