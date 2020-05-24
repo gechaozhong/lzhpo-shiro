@@ -37,6 +37,7 @@
         <commons-codec.version>1.11</commons-codec.version>
         <fastjson.version>1.2.32</fastjson.version>
         <kaptcha.version>1.3</kaptcha.version>
+        <maven.version>1.5.4.RELEASE</maven.version>
         <thymeleaf-extras-shiro.version>2.0.0</thymeleaf-extras-shiro.version>
     </properties>
 
@@ -68,6 +69,15 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
+        </dependency>
+
+
+        <!--maven 生产jar包-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>${maven.version}</version>
+
         </dependency>
 
         <!-- 自定义引入 -->

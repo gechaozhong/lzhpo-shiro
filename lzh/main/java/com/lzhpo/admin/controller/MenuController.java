@@ -27,6 +27,14 @@ public class MenuController {
     @Autowired
     MenuService menuService;
 
+
+    @GetMapping("currentExeclDetail")
+    @SysLog("跳转到execl 详情页面")
+    public String execlDetail(){
+        return "admin/execl/currentExeclDetail";
+    }
+
+
     @GetMapping("list")
     @SysLog("跳转菜单列表")
     public String list(){
