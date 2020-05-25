@@ -28,31 +28,24 @@ public class MenuController {
     @Autowired
     MenuService menuService;
 
-    @Autowired
-    RecordTable2Service recordTable2Service;
-
-
-
     @GetMapping("table")
     @SysLog("跳转到execl 详情页面")
-    public String table(){
-        return "admin/execl/table";
-    }
+    public String table(){ return "admin/execl/table";}
 
     @GetMapping("currentEmployees")
-    @SysLog("跳转到execl 详情页面")
+    @SysLog("跳转到currentEmployees详情页面")
     public String currentEmployees(){
         return "admin/execl/currentEmployees";
     }
 
     @GetMapping("resignedEmployees")
-    @SysLog("跳转到execl 详情页面")
+    @SysLog("跳转到resignedEmployees 详情页面")
     public String resignedEmployees(){
         return "admin/execl/resignedEmployees";
     }
 
     @GetMapping("currentExeclDetail")
-    @SysLog("跳转到execl 详情页面")
+    @SysLog("跳转到currentExeclDetail 详情页面")
     public String execlDetail(){
         return "admin/execl/currentExeclDetail";
     }

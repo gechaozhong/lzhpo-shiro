@@ -14,6 +14,8 @@ import com.lzhpo.common.config.MySysUser;
 import com.lzhpo.common.util.Constants;
 import com.lzhpo.common.util.Encodes;
 import com.lzhpo.common.util.ResponseEntity;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.WebUtils;
+
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
@@ -80,6 +83,8 @@ public class UserController {
     }
 
     @GetMapping("add")
+    @ApiImplicitParams({@ApiImplicitParam(name = "TOKEN", value = "Authorization token", required = true, dataType = "string", paramType = "header")})
+
     public String add(ModelMap modelMap){
         List<Role> roleList = roleService.selectAll();
         modelMap.put("roleList",roleList);
@@ -90,6 +95,8 @@ public class UserController {
     @PostMapping("add")
     @ResponseBody
     @SysLog("保存新增系统用户数据")
+    @ApiImplicitParams({@ApiImplicitParam(name = "TOKEN", value = "Authorization token", required = true, dataType = "string", paramType = "header")})
+
     public ResponseEntity add(@RequestBody User user){
         if(StringUtils.isBlank(user.getLoginName())){
             return ResponseEntity.failure("登录名不能为空");
@@ -138,6 +145,7 @@ public class UserController {
     @PostMapping("edit")
     @ResponseBody
     @SysLog("保存系统用户编辑数据")
+
     public ResponseEntity edit(@RequestBody User user){
         if(StringUtils.isBlank(user.getId())){
             return ResponseEntity.failure("用户ID不能为空");

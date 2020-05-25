@@ -24,6 +24,7 @@ public class BusiController {
 
     @GetMapping("recordTable2")
     @SysLog("获取备案表2的数据")
+    @ResponseBody
     public List<RecordTable2> getRecordTable2(String seq){
         System.out.println("***********"+recordTable2.getRecordTable2("1").size());
         return recordTable2.getRecordTable2("1");
