@@ -40,7 +40,7 @@ public class RecordTable2 {
     private int specialWorkType;
 
     @TableField(value = "work_start_date",strategy= FieldStrategy.IGNORED)
-    private Date workStartSate;
+    private Date workStartDate;
 
     @TableField(value = "work_end_date",strategy= FieldStrategy.IGNORED)
     private Date workEndDate;
@@ -111,12 +111,12 @@ public class RecordTable2 {
         this.specialWorkType = specialWorkType;
     }
 
-    public Date getWorkStartSate() {
-        return workStartSate;
+    public Date getWorkStartDate() {
+        return workStartDate;
     }
 
-    public void setWorkStartSate(Date workStartSate) {
-        this.workStartSate = workStartSate;
+    public void setWorkStartDate(Date workStartDate) {
+        this.workStartDate = workStartDate;
     }
 
     public Date getWorkEndDate() {

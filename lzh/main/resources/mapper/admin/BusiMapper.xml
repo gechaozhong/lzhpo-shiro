@@ -10,7 +10,7 @@
     <result property="workingYears"     column="working_years"/>
     <result property="workType"    column="work_type"/>
     <result property="specialWorkType"     column="special_work_type"/>
-    <result property="workStartSate"     column="work_start_date"/>
+    <result property="workStartDate"     column="work_start_date"/>
     <result property="workEndDate"     column="work_end_date"/>
     <result property="classificationRegisteredEmployees"    column="classification_registered_employees"/>
     <result property="migrantWorkerOrNot"     column="migrant_worker_or_not"/>

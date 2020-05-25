@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html xmlns:th="http://www.thymeleaf.org"
           xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
     <head>
@@ -17,12 +16,9 @@
     </head>
     <script type="text/javascript" th:src="@{/static/layui/layui.js}"></script>
     <script type="text/javascript" th:src="@{/static/admin/js/tools.js}"></script>
-    <script type="text/javascript" th:src="@{/static/admin/js/user/userList.js}"></script>
-
     <body>
 
         <table class="layui-hide" id="test" lay-filter="test"></table>
-
         <script type="text/html" id="toolbarDemo">
             <div class="layui-btn-container">
                 <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
