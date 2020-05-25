@@ -2,6 +2,7 @@ package com.lzhpo.admin.controller;
 
 import com.lzhpo.admin.entity.Menu;
 import com.lzhpo.admin.service.MenuService;
+import com.lzhpo.admin.service.RecordTable2Service;
 import com.lzhpo.common.annotation.SysLog;
 import com.lzhpo.common.util.ResponseEntity;
 import org.apache.commons.lang3.StringUtils;
@@ -27,20 +28,34 @@ public class MenuController {
     @Autowired
     MenuService menuService;
 
+    @Autowired
+    RecordTable2Service recordTable2Service;
+
+
+
     @GetMapping("table")
     @SysLog("跳转到execl 详情页面")
     public String table(){
         return "admin/execl/table";
     }
 
+    @GetMapping("currentEmployees")
+    @SysLog("跳转到execl 详情页面")
+    public String currentEmployees(){
+        return "admin/execl/currentEmployees";
+    }
 
+    @GetMapping("resignedEmployees")
+    @SysLog("跳转到execl 详情页面")
+    public String resignedEmployees(){
+        return "admin/execl/resignedEmployees";
+    }
 
     @GetMapping("currentExeclDetail")
     @SysLog("跳转到execl 详情页面")
     public String execlDetail(){
         return "admin/execl/currentExeclDetail";
     }
-
 
     @GetMapping("list")
     @SysLog("跳转菜单列表")

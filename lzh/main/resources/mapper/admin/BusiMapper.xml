@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzhpo.admin.mapper.BusiMapper">
+
+  <resultMap id="showBusiMap" type="com.lzhpo.admin.entity.business.RecordTable2">
+    <result property="Id"       column="id" />
+    <result property="sequence"  column="sequence"/>
+    <result property="sex"    column="sex"/>
+    <result property="idCard"     column="id_card"/>
+    <result property="workingYears"     column="working_years"/>
+    <result property="workType"    column="work_type"/>
+    <result property="specialWorkType"     column="special_work_type"/>
+    <result property="workStartSate"     column="work_start_date"/>
+    <result property="workEndDate"     column="work_end_date"/>
+    <result property="classificationRegisteredEmployees"    column="classification_registered_employees"/>
+    <result property="migrantWorkerOrNot"     column="migrant_worker_or_not"/>
+    <result property="disabilityOrNot"     column="disability_or_not"/>
+  </resultMap>
+
+  <select id="selectResignedTable2"  resultMap="showBusiMap"  parameterType="java.lang.String">
+      SELECT * from labor_employment
+  </select>
+
+
+</mapper>
