@@ -1,6 +1,7 @@
 package com.lzhpo.admin.controller;
 
 import com.lzhpo.admin.entity.Menu;
+import com.lzhpo.admin.entity.business.RecordTable2;
 import com.lzhpo.admin.service.MenuService;
 import com.lzhpo.admin.service.RecordTable2Service;
 import com.lzhpo.common.annotation.SysLog;
@@ -31,6 +32,7 @@ public class MenuController {
     @GetMapping("table")
     @SysLog("跳转到execl 详情页面")
     public String table(){ return "admin/execl/table";}
+
 
     @GetMapping("currentEmployees")
     @SysLog("跳转到currentEmployees详情页面")
