@@ -22,7 +22,8 @@ public class RecordTable2 {
     @TableField(value = "sequence",strategy= FieldStrategy.IGNORED)
     private String sequence;
 
-
+    @TableField(value = "name",strategy= FieldStrategy.IGNORED)
+    private String name;
 
     @TableField(value = "sex",strategy= FieldStrategy.IGNORED)
     private String sex;
@@ -69,6 +70,14 @@ public class RecordTable2 {
 
     public void setSequence(String sequence) {
         this.sequence = sequence;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getSex() {

@@ -1,17 +1,16 @@
 package com.lzhpo.admin.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.lzhpo.admin.entity.Menu;
 import com.lzhpo.admin.entity.business.RecordTable2;
+import com.lzhpo.admin.entity.business.RecordTable3;
 import com.lzhpo.admin.mapper.BusiMapper;
-import com.lzhpo.admin.mapper.MenuMapper;
+import com.lzhpo.admin.mapper.BusiResignedEmpMapper;
 import com.lzhpo.admin.service.RecordTable2Service;
+import com.lzhpo.admin.service.RecordTable3Service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * <p> Author：lzhpo </p>
@@ -20,10 +19,11 @@ import java.util.Map;
  */
 @Service
 @Transactional(rollbackFor = Exception.class)
-public class RecordTable2Impl extends ServiceImpl<BusiMapper, RecordTable2> implements RecordTable2Service {
+public class RecordTable3Impl extends ServiceImpl<BusiResignedEmpMapper, RecordTable3> implements RecordTable3Service {
+
 
     @Override
-    public List<RecordTable2> getRecordTable2(String sequenc) {
-        return baseMapper.laborEmployment(sequenc);
+    public List<RecordTable3> getRecordTable3(String sequence) {
+        return baseMapper.queryResignEmp(sequence);
     }
 }

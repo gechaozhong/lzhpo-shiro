@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzhpo.admin.mapper.BusiSummaryMapper">
+
+  <resultMap id="busiSummaryMapperMap" type="com.lzhpo.admin.entity.business.RecordTable1">
+    <result property="Id"       column="id" />
+    <result property="sequence"  column="sequence"/>
+    <result property="summary"    column="summary"/>
+    <result property="reviewer"    column="reviewer"/>
+    <result property="passedOrNot"     column="passed_or_not"/>
+    <result property="submitDate"     column="submit_date"/>
+    <result property="reviewDate"    column="review_date"/>
+    <result property="reasonForNotPassed" column="reason_for_not_passed"/>
+    <result property="commit" column="commit"/>
+
+  </resultMap>
+
+  <select id="querySummaryCompany"  resultMap="busiSummaryMapperMap"  parameterType="java.lang.String">
+      SELECT * from busi_summary
+  </select>
+
+
+</mapper>

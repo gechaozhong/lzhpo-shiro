@@ -18,89 +18,97 @@
     <script type="text/javascript" th:src="@{/static/admin/js/tools.js}"></script>
     <body>
 
-        <table class="layui-hide" id="test" lay-filter="test"></table>
-        <script type="text/html" id="toolbarDemo">
-            <div class="layui-btn-container">
-                <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-                <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-                <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
-            </div>
-        </script>
+        <table class="layui-hide" id="sheet2" lay-filter="test"></table>
 
-        <script type="text/html" id="barDemo">
-            <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-        </script>
-
-        <script>
-            layui.use('table', function(){
-                var table = layui.table;
-                table.render({
-                    elem: '#test'
-                    ,url:'admin/system/busi/recordTable2'
-                    ,toolbar: '#toolbarDemo'
-                    ,defaultToolbar: ['filter', 'exports', 'print', {
-                        title: '提示'
-                        ,layEvent: 'LAYTABLE_TIPS'
-                        ,icon: 'layui-icon-tips'
-                    }]
-                    ,title: '用户数据表'
-                    ,cols: [[
-                        {type: 'checkbox', fixed: 'left'}
-                        ,{field:'id', title:'ID', width:80, fixed: 'left', unresize: true, sort: true}
-                        ,{field:'sequence', title:'用户名', width:120, edit: 'text'}
-                        ,{field:'sex', title:'性别', width:80, edit: 'text', sort: true}
-                        ,{field:'idCard', title:'城市', width:100}
-                        ,{field:'workingYears', title:'签名'}
-                        ,{field:'workType', title:'积分', width:80, sort: true}
-                        ,{field:'specialWorkType', title:'IP', width:120}
-                        ,{field:'specialWorkType', title:'登入次数', width:100, sort: true}
-                        ,{field:'workEndDate', title:'加入时间', width:120}
-                    ]]
-                    ,page: true
-                });
-                table.on('toolbar(test)', function(obj){
-                    var checkStatus = table.checkStatus(obj.config.id);
-                    switch(obj.event){
-                        case 'getCheckData':
-                            var data = checkStatus.data;
-                            layer.alert(JSON.stringify(data));
-                            break;
-                        case 'getCheckLength':
-                            var data = checkStatus.data;
-                            layer.msg('选中了：'+ data.length + ' 个');
-                            break;
-                        case 'isAll':
-                            layer.msg(checkStatus.isAll ? '全选': '未全选');
-                            break;
-
-                        //自定义头工具栏右侧图标 - 提示
-                        case 'LAYTABLE_TIPS':
-                            layer.alert('这是工具栏右侧自定义的一个图标按钮');
-                            break;
-                    };
-                });
-                table.on('tool(test)', function(obj){
-                    var data = obj.data;
-                    //console.log(obj)
-                    if(obj.event === 'del'){
-                        layer.confirm('真的删除行么', function(index){
-                            obj.del();
-                            layer.close(index);
-                        });
-                    } else if(obj.event === 'edit'){
-                        layer.prompt({
-                            formType: 2
-                            ,value: data.email
-                        }, function(value, index){
-                            obj.update({
-                                email: value
-                            });
-                            layer.close(index);
-                        });
-                    }
-                });
-            });
-        </script>
     </body>
+    <script type="text/html" id="toolbarDemo">
+        <div class="layui-btn-container">
+            <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+            <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+            <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+        </div>
+    </script>
+
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
+
+    <script>
+        layui.use('table', function(){
+            var table = layui.table;
+            table.render({
+                elem: '#sheet2'
+                ,url:'/admin/system/business/recordTable2Data'
+                ,toolbar: '#toolbarDemo'
+                ,defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示'
+                    ,layEvent: 'LAYTABLE_TIPS'
+                    ,icon: 'layui-icon-tips'
+                }]
+                ,title: '用户数据表'
+                ,cols: [
+                            [
+                            {type: 'checkbox', fixed: 'left'}
+                            ,{field:'sequence', title:'序 号', width:80, fixed: 'left', unresize: true, sort: true}
+                            ,{field:'name', title:'姓  名', width:120, edit: 'text'}
+                            ,{field:'sex', title:'性别', width:80, edit: 'text', sort: true}
+                            ,{field:'idCard', title:'居民身份证号', width:160}
+                            ,{field:'workingYears', title:'本单位工作年限(年)', width:100}
+                            ,{field:'workType', title:'工  种', width:80, sort: true}
+                            ,{field:'specialWorkType', title:'是否特殊工种', width:80, sort: true}
+                            ,{field:'workStartDate', title:'劳动合同开始时间', width:140}
+                            ,{field:'workEndDate', title:'劳动合同终止时间', width:140}
+                            ,{field:'classificationRegisteredEmployees', title:'在册职工分类' , width:70}
+                            ,{field:'migrantWorkerOrNot', title:'是否农民工', width:70}
+                            ,{field:'disabilityOrNot', title:'是否残疾', width:70}
+                        ]
+                ]
+                ,page: true
+            });
+            table.on('toolbar(test)', function(obj){
+                var checkStatus = table.checkStatus(obj.config.id);
+                switch(obj.event){
+                    case 'getCheckData':
+                        var data = checkStatus.data;
+                        layer.alert(JSON.stringify(data));
+                        break;
+                    case 'getCheckLength':
+                        var data = checkStatus.data;
+                        layer.msg('选中了：'+ data.length + ' 个');
+                        break;
+                    case 'isAll':
+                        layer.msg(checkStatus.isAll ? '全选': '未全选');
+                        break;
+
+                    //自定义头工具栏右侧图标 - 提示
+                    case 'LAYTABLE_TIPS':
+                        layer.alert('这是工具栏右侧自定义的一个图标按钮');
+                        break;
+                };
+            });
+            table.on('tool(test)', function(obj){
+                var data = obj.data;
+                //console.log(obj)
+                if(obj.event === 'del'){
+                    layer.confirm('真的删除行么', function(index){
+                        obj.del();
+                        layer.close(index);
+                    });
+                } else if(obj.event === 'edit'){
+                    layer.prompt({
+                        formType: 2
+                        ,value: data.email
+                    }, function(value, index){
+                        obj.update({
+                            email: value
+                        });
+                        layer.close(index);
+                    });
+                }
+            });
+        });
+    </script>
+
+
 </html>

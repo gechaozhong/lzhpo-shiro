@@ -1,7 +1,9 @@
 package com.lzhpo.admin.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.lzhpo.admin.entity.business.RecordTable2;
+
+import com.lzhpo.admin.entity.business.RecordTable3;
+
 import java.util.List;
 
 /**
@@ -10,7 +12,7 @@ import java.util.List;
  * <p> Description：</p>
  */
 
-public interface BusiMapper extends BaseMapper<RecordTable2> {
+public interface BusiResignedEmpMapper extends BaseMapper<RecordTable3> {
 
-    List<RecordTable2> laborEmployment(String sequence);
+    List<RecordTable3> queryResignEmp(String sequence);
 }
