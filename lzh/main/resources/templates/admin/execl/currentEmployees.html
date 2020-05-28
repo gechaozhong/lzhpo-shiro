@@ -13,6 +13,17 @@
         <link rel = "shortcut icon" href="${site.logo}">
         <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}" media="all" />
         <link rel="stylesheet" th:href="@{/static/admin/css/list.css}" media="all" />
+        <style>
+            .layui-table-cell {
+                height: auto;
+                white-space: normal;
+                word-wrap: break-word;
+                word-break: break-all;
+            }
+        </style>
+
+
+
     </head>
     <script type="text/javascript" th:src="@{/static/layui/layui.js}"></script>
     <script type="text/javascript" th:src="@{/static/admin/js/tools.js}"></script>
@@ -50,18 +61,18 @@
                 ,cols: [
                             [
                             {type: 'checkbox', fixed: 'left'}
-                            ,{field:'sequence', title:'序 号', width:80, fixed: 'left', unresize: true, sort: true}
-                            ,{field:'name', title:'姓  名', width:120, edit: 'text'}
-                            ,{field:'sex', title:'性别', width:80, edit: 'text', sort: true}
-                            ,{field:'idCard', title:'居民身份证号', width:160}
-                            ,{field:'workingYears', title:'本单位工作年限(年)', width:100}
+                            ,{field:'sequence', title:'序 号', width:100}
+                            ,{field:'name', title:'姓  名', width:120}
+                            ,{field:'sex', title:'性别', width:80, sort: true}
+                            ,{field:'idCard', title:'居民身份证号', width:200,rowspan: 2}
+                            ,{field:'workingYears', title:'本单位工<br>作年限(年)', width:100}
                             ,{field:'workType', title:'工  种', width:80, sort: true}
-                            ,{field:'specialWorkType', title:'是否特殊工种', width:80, sort: true}
-                            ,{field:'workStartDate', title:'劳动合同开始时间', width:140}
-                            ,{field:'workEndDate', title:'劳动合同终止时间', width:140}
-                            ,{field:'classificationRegisteredEmployees', title:'在册职工分类' , width:70}
-                            ,{field:'migrantWorkerOrNot', title:'是否农民工', width:70}
-                            ,{field:'disabilityOrNot', title:'是否残疾', width:70}
+                            ,{field:'specialWorkType', title:'是否特<br>殊工种', width:100, sort: true}
+                            ,{field:'workStartDate', title:'劳动合同<br>开始时间', width:120,}
+                            ,{field:'workEndDate', title:'劳动合同<br>终止时间', width:120,}
+                            ,{field:'classificationRegisteredEmployees', title:'在册职<br>工分类' , width:80}
+                            ,{field:'migrantWorkerOrNot', title:'是否农<br>民工', width:80}
+                            ,{field:'disabilityOrNot', title:'是否<br>残疾', width:80}
                         ]
                 ]
                 ,page: true

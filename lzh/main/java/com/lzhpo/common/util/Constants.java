@@ -1,5 +1,7 @@
 package com.lzhpo.common.util;
 
+import java.text.SimpleDateFormat;
+
 /**
  * <p> Author：lzhpo </p>
  * <p> Title：</p>
@@ -31,4 +33,9 @@ public class Constants {
      *系统用户默认密码
      */
     public static final String DEFAULT_PASSWORD = "123456";
+
+    /**
+     *s时间格式
+     */
+    public static final  SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 }

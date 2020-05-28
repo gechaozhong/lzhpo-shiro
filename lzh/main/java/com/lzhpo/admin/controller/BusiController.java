@@ -3,15 +3,18 @@ package com.lzhpo.admin.controller;
 
 
 
+import com.lzhpo.admin.entity.business.RecordTable3;
 import com.lzhpo.admin.service.RecordTable1Service;
 import com.lzhpo.admin.service.RecordTable2Service;
 import com.lzhpo.admin.service.RecordTable3Service;
 import com.lzhpo.common.annotation.SysLog;
+import com.lzhpo.common.util.Constants;
 import com.lzhpo.common.util.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
 
 @Controller
@@ -62,6 +65,11 @@ public class BusiController {
         ResponseEntity res = ResponseEntity.success("ok");
         res.put("msg","success");
         res.put("code","0");
+        List<RecordTable3> reList =  recordTable3Service3.getRecordTable3("1");
+//        for(RecordTable3 rt:reList){
+//            rt.setLaborContractStartDate(Constants.SDF.(rt.getLaborContractStartDate()));
+//        }
+
         res.put("data",recordTable3Service3.getRecordTable3("1"));
         System.out.println("***********"+recordTable3Service3.getRecordTable3("1").size());
         return res;
