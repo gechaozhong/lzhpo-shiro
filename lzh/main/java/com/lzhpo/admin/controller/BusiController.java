@@ -1,21 +1,15 @@
 package com.lzhpo.admin.controller;
 
-
-
-
 import com.lzhpo.admin.entity.business.RecordTable3;
 import com.lzhpo.admin.service.RecordTable1Service;
 import com.lzhpo.admin.service.RecordTable2Service;
 import com.lzhpo.admin.service.RecordTable3Service;
 import com.lzhpo.common.annotation.SysLog;
-import com.lzhpo.common.util.Constants;
 import com.lzhpo.common.util.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-
 
 @Controller
 @RequestMapping("admin/system/business")

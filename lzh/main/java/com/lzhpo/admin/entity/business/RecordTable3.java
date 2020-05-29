@@ -10,7 +10,6 @@ import java.util.Date;
 @TableName("busi_resigned_employees")
 public class RecordTable3 {
 
-
     @TableId("id")
     private Integer Id;
 
