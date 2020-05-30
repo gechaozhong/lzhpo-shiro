@@ -14,9 +14,28 @@
     <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}" media="all" />
     <link rel="stylesheet" th:href="@{/static/admin/css/list.css}" media="all" />
 </head>
+
+<script type="text/javascript" th:src="@{/static/layui/layui.js}"></script>
+<script type="text/javascript" th:src="@{/static/admin/js/tools.js}"></script>
+
+
+
+<script>
+    layui.use('jquery', function(){
+        var $ = layui.$;
+        $.get("/admin/system/business/recordTable1Data",function(data,status){
+            console.log("Data: " + data + "nStatus: " + status);
+
+        });
+    });
+</script>
+
+
+
+
 <body>
 
-<table  width="50%" border="1" cellpadding="0" cellspacing="0" style="table-layout: fixed; word-wrap: break-word; margin: auto" >
+<table  id="sheet1"  width="50%" border="1" cellpadding="0" cellspacing="0" style="table-layout: fixed; word-wrap: break-word; margin: auto" >
  <tr>
    <th colspan = "8">用人单位劳动用工基本情况备案表</th>
 
@@ -25,7 +44,7 @@
  <tr>
    <td colspan = "5"></td>
    <td>截止日期:</td>
-   <td colspan = "2" >     年    月    日</td>
+   <td colspan = "2" id="F2" >     年    月    日</td>
  </tr>
 
 

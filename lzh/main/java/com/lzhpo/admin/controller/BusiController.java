@@ -41,7 +41,6 @@ public class BusiController {
         res.put("msg","success");
         res.put("code","0");
         res.put("data",recordTable1Service.getRecordTable1("1"));
-        System.out.println("***********"+recordTable1Service.getRecordTable1("1").size());
         return res;
     }
 
