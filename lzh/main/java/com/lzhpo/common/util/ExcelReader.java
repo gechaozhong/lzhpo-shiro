@@ -1,6 +1,8 @@
 package com.lzhpo.common.util;
 
 import org.apache.poi.ss.usermodel.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,21 +18,22 @@ public class ExcelReader {
     private Workbook workBook;
     private Sheet sheet;
     private List<String> columnHeaderList;
-    private List<List<String>> listData;
+    private List<List<Object>> listData;
     private List<Map<String,String>> mapData;
     private boolean flag;
+    private Logger logger = LoggerFactory.getLogger(ExcelReader.class);
 
-    public ExcelReader(String filePath, String sheetName) {
-        this.filePath = filePath;
+    public ExcelReader(File file,String sheetName) {
+        this.filePath = file.getPath();
         this.sheetName = sheetName;
         this.flag = false;
-        this.load();
+        this.load(file);
     }
 
-    private void load() {
+    private void load(File file) {
         FileInputStream inStream = null;
         try {
-            inStream = new FileInputStream(new File(filePath));
+            inStream = new FileInputStream(file);
             workBook = WorkbookFactory.create(inStream);
             sheet = workBook.getSheet(sheetName);
         } catch (Exception e) {
@@ -48,24 +51,34 @@ public class ExcelReader {
 
 
     private void getSheetData() {
-        listData = new ArrayList<List<String>>();
+        listData = new ArrayList<List<Object>>();
         mapData = new ArrayList<Map<String, String>>();
         columnHeaderList = new ArrayList<String>();
         int numOfRows = sheet.getLastRowNum() + 1;
         for (int i = 0; i < numOfRows; i++) {
             Row row = sheet.getRow(i);
             Map<String, String> map = new HashMap<String, String>();
-            List<String> list = new ArrayList<String>();
+            List<Object> list = new ArrayList<>();
             if (row != null) {
                 for (int j = 0; j < row.getLastCellNum(); j++) {
                     Cell cell = row.getCell(j);
                     if (i == 0){
                         columnHeaderList.add(String.valueOf(cell.getStringCellValue()));
                     }
-                    else{
-                        map.put(columnHeaderList.get(j), String.valueOf(cell.getStringCellValue()));
+                    if(cell !=null){
+                         if (cell.getCellType().equals(CellType.STRING) ){
+                             list.add(cell.getStringCellValue());
+                         }else if (cell.getCellType().equals(CellType.NUMERIC) ){
+                             list.add(cell.getNumericCellValue());
+                         }else if (cell.getCellType().equals(CellType.BOOLEAN) ){
+                             list.add(cell.getBooleanCellValue());
+                         }else if (cell.getCellType().equals(CellType.BLANK) ){
+                             list.add("");
+                         }else{
+                             System.out.println("execl 格式錯誤");
+                         }
+
                     }
-                    list.add(String.valueOf(cell.getStringCellValue()));
                 }
             }
             if (i > 0){
@@ -76,7 +89,7 @@ public class ExcelReader {
         flag = true;
     }
 
-    public String getCellData(int row, int col){
+    public Object getCellData(int row, int col){
         if(row<=0 || col<=0){
             return null;
         }
@@ -89,6 +102,7 @@ public class ExcelReader {
             return null;
         }
     }
+
 
     public String getCellData(int row, String headerName){
         if(row<=0){
@@ -104,11 +118,9 @@ public class ExcelReader {
         }
     }
 
-
-
     public static void main(String[] args) {
-        ExcelReader eh = new ExcelReader("E:\\workspace\\test.xls","Sheet1");
-        System.out.println(eh.getCellData(1, 1));
-        System.out.println(eh.getCellData(1, "test1"));
+        String test = "F22";
+        System.out.println(test.substring(1));
+        System.out.println(test.substring(0,1));
     }
 }

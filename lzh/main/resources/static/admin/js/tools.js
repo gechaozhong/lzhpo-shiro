@@ -38,30 +38,7 @@ layui.define(["layer","laytpl"],function(exports){
         return num < Math.pow(10, length) ? str + (num|0) : num;
     };
 
-    laytpl.render({
-        elem: '#test8'
-        ,url: 'https://httpbin.org/post' //改成您自己的上传接口
-        ,auto: false
-        //,multiple: true
-        ,bindAction: '#test9'
-        ,done: function(res){
-            layer.msg('上传成功');
-            console.log(res)
-        }
-    });
 
-    //选完文件后不自动上传
-    laytpl.render({
-        elem: '#test8'
-        ,url: 'https://httpbin.org/post' //改成您自己的上传接口
-        ,auto: false
-        //,multiple: true
-        ,bindAction: '#test9'
-        ,done: function(res){
-            layer.msg('上传成功');
-            console.log(res)
-        }
-    });
     /**
      * 计算多长时间之前
      * @param dateTimeStamp

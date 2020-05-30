@@ -1,17 +1,14 @@
 package com.lzhpo.admin.entity.business;
 
 
-import com.baomidou.mybatisplus.annotation.FieldStrategy;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 
 import java.util.Date;
 
 @TableName("busi_summary")
 public class RecordTable1 {
 
-    @TableId("id")
+    @TableId(type=IdType.AUTO)
     private Integer Id;
 
     @TableField(value = "sequence",strategy= FieldStrategy.IGNORED)

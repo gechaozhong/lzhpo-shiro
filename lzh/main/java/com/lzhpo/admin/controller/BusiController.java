@@ -1,6 +1,7 @@
 package com.lzhpo.admin.controller;
 
 import com.lzhpo.admin.entity.business.RecordTable3;
+import com.lzhpo.admin.service.BusinessService;
 import com.lzhpo.admin.service.RecordTable1Service;
 import com.lzhpo.admin.service.RecordTable2Service;
 import com.lzhpo.admin.service.RecordTable3Service;
@@ -9,6 +10,9 @@ import com.lzhpo.common.util.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -23,6 +27,10 @@ public class BusiController {
 
     @Autowired
     RecordTable3Service recordTable3Service3;
+
+    @Autowired
+    BusinessService businessService;
+
 
 
     @GetMapping("recordTable1Data")
@@ -60,12 +68,30 @@ public class BusiController {
         res.put("msg","success");
         res.put("code","0");
         List<RecordTable3> reList =  recordTable3Service3.getRecordTable3("1");
-//        for(RecordTable3 rt:reList){
-//            rt.setLaborContractStartDate(Constants.SDF.(rt.getLaborContractStartDate()));
-//        }
-
         res.put("data",recordTable3Service3.getRecordTable3("1"));
         System.out.println("***********"+recordTable3Service3.getRecordTable3("1").size());
+        return res;
+    }
+
+
+    @PostMapping("upload")
+    @ResponseBody
+    @SysLog("上传execl")
+    public ResponseEntity uploadExecl(@RequestParam("file") MultipartFile file){
+
+        ResponseEntity res = ResponseEntity.success("ok");
+        String name=file.getOriginalFilename();
+        String extString = name.substring(name.lastIndexOf("."));
+        if(!extString.equals(".xlsx")&&!extString.equals(".xls")){
+            List<Object>li=new ArrayList<>();
+            res.put("msg","文件格式错误");
+            res.put("code","-1");
+            return res;
+        }
+
+        businessService.uploadExeclService(file);
+        res.put("msg","success");
+        res.put("code","0");
         return res;
     }
 

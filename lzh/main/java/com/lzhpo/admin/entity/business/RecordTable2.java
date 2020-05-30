@@ -1,9 +1,6 @@
 package com.lzhpo.admin.entity.business;
 
-import com.baomidou.mybatisplus.annotation.FieldStrategy;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 
 import java.util.Date;
 
@@ -16,7 +13,7 @@ import java.util.Date;
 @TableName("labor_employment")
 public class RecordTable2 {
 
-    @TableId("id")
+    @TableId(type= IdType.AUTO)
     private Integer Id;
 
     @TableField(value = "sequence",strategy= FieldStrategy.IGNORED)

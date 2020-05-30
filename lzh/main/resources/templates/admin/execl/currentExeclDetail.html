@@ -19,9 +19,8 @@
     <fieldset >
         <legend>文件</legend>
         <div class="layui-upload">
-            <button type="button" class="layui-btn layui-btn-normal" id="test8">选择文件</button>
-            <button type="button" class="layui-btn" id="test9">开始上传</button>
-
+            <button type="button" class="layui-btn layui-btn-normal" id="selectFile">选择文件</button>
+            <button type="button" class="layui-btn" id="startUploadFile">开始上传</button>
             <button type="button" class="layui-btn" style="margin-left:100px;" onclick="click1()">备案一</button>
             <button type="button" class="layui-btn" onclick="click2()">备案二</button>
             <button type="button" class="layui-btn" onclick="click3()">备案三</button>
@@ -30,11 +29,6 @@
             <label >审核状态：</label>
             <text size="6" type="text" class=" form-control" style="width: 60px;color: #0b2e13"  value="正在审核"> 已通过  </text>
         </div>
-<!--        <div  class="layui-btn-container" >-->
-<!--            <button type="button" class="layui-btn" onclick="click1()">用工详情</button>-->
-<!--            <button type="button" class="layui-btn" onclick="click2()">在职工人</button>-->
-<!--            <button type="button" class="layui-btn">离职工人</button>-->
-<!--        </div>-->
     </fieldset>
 
 </div>
@@ -48,21 +42,17 @@
 <script>
 
     function click1() {
-
         document.getElementById('ifrPage1').innerHTML = "<iframe src='table'"+"style='width: 99%;height: 800px;padding: 10px'"+"></iframe>";
     };
-
     function click2() {
 
         document.getElementById('ifrPage1').innerHTML = "<iframe src='currentEmployees'"+"style='width: 99%;height: 800px;padding: 10px' "+"></iframe>";
     };
-
     function click3() {
         document.getElementById('ifrPage1').innerHTML = "<iframe src='resignedEmployees'"+"style='width: 99%;height: 800px;padding: 10px'"+"></iframe>";
     };
 </script>
-<script type="text/javascript" th:src="@{/static/layui/layui.js}"></script>
-<script type="text/javascript" th:src="@{/static/admin/js/tools.js}"></script>
-<script type="text/javascript" th:src="@{/static/admin/js/user/userList.js}"></script>
+<script type="text/javascript" th:src="@{/static/layui/layui.all.js}"></script>
+<script type="text/javascript" th:src="@{/static/admin/js/business/busi.js}"></script>
 </body>
 </html>
