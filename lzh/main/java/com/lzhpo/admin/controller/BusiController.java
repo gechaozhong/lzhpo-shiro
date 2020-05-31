@@ -7,6 +7,7 @@ import com.lzhpo.admin.service.RecordTable2Service;
 import com.lzhpo.admin.service.RecordTable3Service;
 import com.lzhpo.common.annotation.SysLog;
 import com.lzhpo.common.util.ResponseEntity;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
 import java.util.List;
 
+@Api
 @Controller
 @RequestMapping("admin/system/business")
 public class BusiController {
@@ -43,8 +45,6 @@ public class BusiController {
         res.put("data",recordTable1Service.getRecordTable1("1"));
         return res;
     }
-
-
 
     @GetMapping("recordTable2Data")
     @SysLog("获取备案表2的数据")
