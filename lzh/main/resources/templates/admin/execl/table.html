@@ -13,17 +13,15 @@
     <link rel = "shortcut icon" href="${site.logo}">
     <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}" media="all" />
     <link rel="stylesheet" th:href="@{/static/admin/css/list.css}" media="all" />
+    <style>
+        .tdValue{
+         text-align:center
+        }
+    </style>
 </head>
 
 <script type="text/javascript" th:src="@{/static/layui/layui.js}"></script>
 <script type="text/javascript" th:src="@{/static/admin/js/tools.js}"></script>
-
-
-
-
-
-
-
 
 <body>
 
@@ -42,113 +40,113 @@
 
   <tr>
     <td>单位名称</td>
-    <td colspan = "5" id = "B3"></td>
+    <td colspan = "5" class="tdValue" id = "B3"></td>
 	<td>法定代表人</td>
-	<td id="H3"></td>
+	<td id="H3" class="tdValue"></td>
   </tr>
   <tr>
     <td>所有制性质</td>
-    <td colspan = "3" id="B4"></td>
+    <td class="tdValue" colspan = "3" id="B4"></td>
 
 	<td>上级主管</td>
-	<td colspan = "3" id="F4"></td>
+	<td class="tdValue" colspan = "3" id="F4"></td>
 
   </tr>
   <tr>
     <td>登记注册地</td>
-    <td colspan = "3" id="B5"></td>
+    <td class="tdValue" colspan = "3" id="B5"></td>
 
   	<td>实际经营地</td>
-  	<td colspan = "3" id="F5"></td>
+  	<td class="tdValue" colspan = "3" id="F5"></td>
 
   </tr>
  <tr>
     <td>组织机构代码</td>
-    <td colspan = "3" id="B6"></td>
+    <td class="tdValue" colspan = "3" id="B6"></td>
 
   	<td>社会保险登记证号</td>
-  	<td colspan = "3" id="F6"></td>
+  	<td class="tdValue" colspan = "3" id="F6"></td>
 
   </tr>
   <tr>
     <td >详细通信地址</td>
-    <td colspan = "5" id="B7"></td>
+    <td class="tdValue" colspan = "5" id="B7"></td>
 
   	<td>邮政编码</td>
-  	<td id="H7"></td>
+  	<td class="tdValue" id="H7"></td>
   </tr>
   <tr>
     <td colspan = "2">上年度职工工资<br>总额(万元)</td>
-    <td colspan = "2" id="C8"></td>
+    <td class="tdValue" colspan = "2" id="C8"></td>
     <td colspan = "2">上年度在岗职工<br>人均月工资(元)</td>
-  	<td colspan = "2" id="G8"></td>
+  	<td class="tdValue" colspan = "2" id="G8"></td>
   </tr>
   <tr>
       <td colspan = "2">累计拖欠职工工<br>资总额(万元)</td>
-      <td colspan = "2" id="C9"></td>
+      <td class="tdValue" colspan = "2" id="C9"></td>
       <td >拖欠工资涉及职工人数</td>
-      <td id="F9"></td>
+      <td class="tdValue" id="F9"></td>
 	   <td >单位空缺岗位(人)</td>
-	   <td id="H9"></td>
+	   <td class="tdValue" id="H9"></td>
     </tr>
   <tr  >
     <td  width="50px" rowspan = "8">劳动合同签订情况</td>
     <td rowspan = "2"  colspan = "2">劳动关系人员数</td>
-  	<td rowspan = "2" id="D10"></td>
+  	<td class="tdValue" rowspan = "2" id="D10"></td>
   	<td >男职工</td>
-  	<td id="F10"></td>
+  	<td class="tdValue" id="F10"></td>
   	<td>女职工</td>
-  	<td id="H10"></td>
+  	<td class="tdValue" id="H10"></td>
   </tr>
   <tr  >
   	<td >在岗职工人数</td>
-  	<td id="F11"></td>
+  	<td class="tdValue" id="F11"></td>
   	<td>非在岗职工人数</td>
-  	<td id="H11"></td>
+  	<td class="tdValue" id="H11"></td>
   </tr>
   <tr  >
     <td colspan = "2">应签劳动关系人员数</td>
-	<td id="D12"></td>
+	<td class="tdValue" id="D12"></td>
   	<td >实签订人数</td>
-  	<td id="F12"></td>
+  	<td class="tdValue" id="F12"></td>
   	<td>合同签订率%</td>
-  	<td id="H12"></td>
+  	<td class="tdValue" id="H12"></td>
   </tr>
   <tr>
     <td rowspan = "4"  colspan = "2">实签劳动合同期限统计</td>
   	<td colspan = "4" >签订以完成一定工作任务为期限的劳动合同人数</td>
-  	<td id="H13"></td>
+  	<td class="tdValue" id="H13"></td>
   </tr>
   <tr>
   	<td colspan = "4" >签订3年以下劳动合同人数</td>
-  	<td id="H14"></td>
+  	<td class="tdValue" id="H14"></td>
   </tr>
   <tr>
   	<td colspan = "4" >签订3-10年劳动合同人数</td>
-  	<td id="H15"></td>
+  	<td class="tdValue" id="H15"></td>
   </tr>
  <tr>
   	<td colspan = "4" >签订10年以上劳动合同和无固定期限劳动合同人数</td>
-     <td id="H16"></td>
+     <td class="tdValue" id="H16"></td>
   </tr>
   <tr>
 
     <td colspan = "2"  >在岗职工中农民工人数</td>
-  	<td id="D17"></td>
+  	<td class="tdValue" id="D17"></td>
   	<td>农民工签订合同人数</td>
-    <td id="F17"></td>
+    <td class="tdValue" id="F17"></td>
   	<td>农民工劳动合同签订率</td>
-    <td id="H17"></td>
+    <td class="tdValue" id="H17"></td>
 
   </tr>
   <tr>
     <td>其他情况</td>
     <td colspan = "2"  >使用劳务派遣人数</td>
-  	<td id="D18"></td>
+  	<td class="tdValue" id="D18"></td>
   	<td>退休返聘人数</td>
-  	<td id="H18"></td>
+  	<td class="tdValue" id="H18"></td>
   	<td>在册职工中残疾职工数</td>
-  	<td id="F18"></td>
+  	<td class="tdValue" id="F18"></td>
   </tr>
   <tr>
     <td rowspan = "3" >参加社会保险情况</td>
@@ -162,25 +160,25 @@
   <tr>
 
     <td colspan = "2">应参保人数</td>
-	<td id="D20"></td>
-	<td id="E20"></td>
-	<td id="F20"></td>
-	<td id="G20"></td>
-	<td id="H20"></td>
+	<td class="tdValue" id="D20"></td>
+	<td class="tdValue" id="E20"></td>
+	<td class="tdValue" id="F20"></td>
+	<td class="tdValue" id="G20"></td>
+	<td class="tdValue" id="H20"></td>
   </tr>
   <tr>
       <td colspan = "2">实参保人数</td>
-      <td id="D21"></td>
-      <td id="E21"></td>
-      <td id="F21"></td>
-      <td id="G21"></td>
-      <td id="H21"></td>
+      <td class="tdValue" id="D21"></td>
+      <td class="tdValue" id="E21"></td>
+      <td class="tdValue" id="F21"></td>
+      <td class="tdValue" id="G21"></td>
+      <td class="tdValue" id="H21"></td>
   </tr>
   <tr>
     <td rowspan = "3" >用人单位盖章</td>
-    <td rowspan = "3"  colspan = "3" id="B22">    年     月     日</td>
+    <td class="tdValue" rowspan = "3"  colspan = "3" id="B22">    年     月     日</td>
   	<td rowspan = "3" >人力资源社会保障行政部门意见</td>
-    <td rowspan = "3"  colspan = "3" id="F22">    年     月     日</td>
+    <td class="tdValue" rowspan = "3"  colspan = "3" id="F22">    年     月     日</td>
   </tr>
 </table>
 </body>
@@ -190,7 +188,6 @@
         var $ = layui.$;
         $.get("/admin/system/business/recordTable1Data",function(data,status){
             var summary =   JSON.parse(data.data[0].summary);
-
 
             for (var val in summary) {
                 var summaryValue  = summary[val];
