@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.lzhpo.admin.entity.business.RecordTable1;
 import com.lzhpo.admin.mapper.BusiSummaryMapper;
 import com.lzhpo.admin.service.BusinessService;
+import com.lzhpo.common.business.Index;
 import com.lzhpo.common.util.ExcelReader;
 import com.lzhpo.common.util.Sheet1CellMapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,14 +31,30 @@ public class BusinessServiceImpl implements BusinessService
     @Override
     public void uploadExeclService(MultipartFile execlFile) {
         try{
-            Map<String,Object> cellJson = new HashMap<>();
+            Map<String,String> cellJson = new HashMap<>();
             File file =  multipartFileToFile(execlFile);
             ExcelReader excelReader = new ExcelReader(file,"备案表一");
             for (Sheet1CellMapping em : Sheet1CellMapping.values()) {
               String col = em.toString().substring(0,1);
               String row = em.toString().substring(1);
               Object cellRe = excelReader.getCellData(Integer.valueOf(row),titleToNumber(col));
-              cellJson.put(em.toString(),cellRe);
+              if (cellRe != null)
+              {
+                  if(Index.getIntegerIndex().contains(em.toString())){
+                      int tmp = Float.valueOf(cellRe.toString()).intValue();
+
+                      cellJson.put(em.toString(),tmp+"");
+                  }else if(Index.getRadioIndex().contains(em.toString())){
+                      float cell = Float.valueOf(cellRe.toString())*100;
+                      cellJson.put(em.toString(),cell+"%");
+                  }else{
+                      cellJson.put(em.toString(),cellRe.toString());
+                  }
+
+              }
+              else {
+                  cellJson.put(em.toString(),"");
+              }
             }
             RecordTable1 rd = new RecordTable1();
             rd.setSummary(JSON.toJSONString(cellJson));
@@ -86,6 +103,13 @@ public class BusinessServiceImpl implements BusinessService
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+
+    public static void main(String[] args) {
+        String abc = "15.23";
+        System.out.println(Float.valueOf(abc).intValue());
     }
 
 }

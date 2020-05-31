@@ -28,17 +28,35 @@
 <script type="text/javascript" th:src="@{/static/layui/layui.js}"></script>
 <script type="text/javascript" th:src="@{/static/admin/js/tools.js}"></script>
 <body>
-
+<div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-inline">
+                <input name="phone"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">工号</label>
+            <div class="layui-input-inline">
+                <input type="text"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">身份证</label>
+            <div class="layui-input-inline">
+                <input type="text"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <button class="layui-btn " data-type="reload">搜索</button>
+        </div>
+    </div>
+</div>
 <table class="layui-hide" id="sheet2" lay-filter="test"></table>
 
 </body>
-<script type="text/html" id="toolbarDemo">
-    <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-        <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
-    </div>
-</script>
+
 
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
@@ -60,8 +78,7 @@
             ,title: '用户数据表'
             ,cols: [
                 [
-                    {type: 'checkbox', fixed: 'left'}
-                    ,{field:'sequence', title:'序 号', width:80}
+                    {field:'sequence', title:'工号', width:80}
                     ,{field:'name', title:'姓  名', width:12,}
                     ,{field:'sex', title:'性别', width:80}
                     ,{field:'idCard', title:'居民身份证号', width:200}
@@ -71,7 +88,7 @@
                     ,{field:'laborContractStartDate', title:'劳动合同<br>开始时间', width:120}
                     ,{field:'laborContractEndDate', title:'劳动合同<br>结束时间', width:120}
                     ,{field:'relieveLaborContractEndDate', title:'劳动合同<br>解除时间', width:120}
-                    ,{field:'whetherPayCompensation', title:'是否应支付<br>经济补偿' , width:80}
+                    ,{field:'whetherPayCompensation', title:'是否应<br>支付补偿' , width:80}
                     ,{field:'compensationAmount', title:'赔偿金额', width:80}
 
                 ]

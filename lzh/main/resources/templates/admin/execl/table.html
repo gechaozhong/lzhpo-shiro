@@ -20,21 +20,7 @@
 
 
 
-<script>
-    layui.use('jquery', function(){
-        var $ = layui.$;
-        $.get("/admin/system/business/recordTable1Data",function(data,status){
-            var summary =   JSON.parse(data.data[0].summary);
-            for (var val in summary) {
-               var summaryValue  = summary[val];
-                if(summaryValue){
-                    document.getElementById(val).innerHTML = summaryValue ;
-                }
 
-            }
-        });
-    });
-</script>
 
 
 
@@ -122,7 +108,7 @@
   </tr>
   <tr  >
     <td colspan = "2">应签劳动关系人员数</td>
-	<td id="D12 "></td>
+	<td id="D12"></td>
   	<td >实签订人数</td>
   	<td id="F12"></td>
   	<td>合同签订率%</td>
@@ -198,4 +184,28 @@
   </tr>
 </table>
 </body>
+
+<script>
+    layui.use('jquery', function(){
+        var $ = layui.$;
+        $.get("/admin/system/business/recordTable1Data",function(data,status){
+            var summary =   JSON.parse(data.data[0].summary);
+
+
+            for (var val in summary) {
+                var summaryValue  = summary[val];
+                if(summaryValue){
+                    if (summaryValue ==0.0){
+                        console.info(summaryValue)
+                        document.getElementById(val).innerHTML = "0 ";
+                    }else{
+                        console.info(val +"：：：：：" +summaryValue)
+                        document.getElementById(val).innerHTML = summaryValue.toString();
+                    }
+
+                }
+            }
+        });
+    });
+</script>
 </html>
