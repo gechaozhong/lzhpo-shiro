@@ -48,7 +48,8 @@ public class BusiController {
 
     @GetMapping("recordTable2Data")
     @SysLog("获取备案表2的数据")
-    @ResponseBody// 加上该注解，被认为是restful接口，
+    // 加上该注解，被认为是restful接口，
+    @ResponseBody
     public ResponseEntity getRecordTable2(String seq){
         ResponseEntity res2 = ResponseEntity.success("ok");
         res2.put("msg","success");

@@ -48,6 +48,8 @@ public class ShiroConfig {
         //配置访问权限
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap();
         filterChainDefinitionMap.put("/","anon");
+        // 添加swagger过滤免除，即凡是swagger请求，则不予拦截，
+
         filterChainDefinitionMap.put("/swagger-ui.html", "anon");
         filterChainDefinitionMap.put("/swagger/**", "anon");
         filterChainDefinitionMap.put("/swagger-resources/**", "anon");
@@ -64,6 +66,8 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/anonCtrl/","anon");
         filterChainDefinitionMap.put("/sysRole/test","anon");
         filterChainDefinitionMap.put("/systemLogout","authc");
+
+        //    /*的免除必须放置最后，这是个坑
         filterChainDefinitionMap.put("/**","authc");
 
 
