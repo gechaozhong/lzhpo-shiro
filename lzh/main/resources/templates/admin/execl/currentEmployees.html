@@ -21,29 +21,37 @@
                 word-break: break-all;
             }
         </style>
-
-
-
     </head>
     <script type="text/javascript" th:src="@{/static/layui/layui.js}"></script>
     <script type="text/javascript" th:src="@{/static/admin/js/tools.js}"></script>
     <body>
-
-        <table class="layui-hide" id="sheet2" lay-filter="test"></table>
-
-    </body>
-    <script type="text/html" id="toolbarDemo">
-        <div class="layui-btn-container">
-            <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-            <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-            <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+        <div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">姓名</label>
+                    <div class="layui-input-inline">
+                        <input name="phone"  class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">工号</label>
+                    <div class="layui-input-inline">
+                        <input type="text"  class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">身份证</label>
+                    <div class="layui-input-inline">
+                        <input type="text"  class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn " data-type="reload">搜索</button>
+                </div>
+            </div>
         </div>
-    </script>
-
-    <script type="text/html" id="barDemo">
-        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-    </script>
+        <table class="layui-hide" id="sheet2" lay-filter="test"></table>
+    </body>
 
     <script>
         layui.use('table', function(){
@@ -60,12 +68,12 @@
                 ,title: '用户数据表'
                 ,cols: [
                             [
-                            {field:'sequence', title:'工号', width:100}
+                            {field:'sequence', title:'工 号', width:100}
                             ,{field:'name', title:'姓  名', width:100}
-                            ,{field:'sex', title:'性别', width:80, sort: true}
+                            ,{field:'sex', title:'性 别', width:100, sort: true}
                             ,{field:'idCard', title:'居民身份证号', width:200,rowspan: 2}
                             ,{field:'workingYears', title:'本单位工<br>作年限(年)', width:100}
-                            ,{field:'workType', title:'工  种', width:80, sort: true}
+                            ,{field:'workType', title:'工 种', width:100, sort: true}
                             ,{field:'specialWorkType', title:'是否特<br>殊工种', width:100, sort: true}
                             ,{field:'workStartDate', title:'劳动合同<br>开始时间', width:140, templet : "<div>{{layui.util.toDateString(d.ordertime, 'yyyy年MM月dd日 ')}}</div>"}
                             ,{field:'workEndDate', title:'劳动合同<br>终止时间', width:140,templet : "<div>{{layui.util.toDateString(d.ordertime, 'yyyy年MM月dd日 ')}}</div>"}
