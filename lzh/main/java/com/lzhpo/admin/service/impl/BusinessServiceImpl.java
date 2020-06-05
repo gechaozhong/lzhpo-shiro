@@ -25,43 +25,54 @@ import java.util.Map;
 public class BusinessServiceImpl implements BusinessService
 {
 
+
     @Autowired
     BusiSummaryMapper busiSummaryMapper;
 
     @Override
     public void uploadExeclService(MultipartFile execlFile) {
         try{
-            Map<String,String> cellJson = new HashMap<>();
+
             File file =  multipartFileToFile(execlFile);
             ExcelReader excelReader = new ExcelReader(file,"备案表一");
-            for (Sheet1CellMapping em : Sheet1CellMapping.values()) {
-              String col = em.toString().substring(0,1);
-              String row = em.toString().substring(1);
-              Object cellRe = excelReader.getCellData(Integer.valueOf(row),titleToNumber(col));
-              if (cellRe != null)
-              {
-                  if(Index.getIntegerIndex().contains(em.toString())){
-                      int tmp = Float.valueOf(cellRe.toString()).intValue();
+            processSheet1(excelReader);
 
-                      cellJson.put(em.toString(),tmp+"");
-                  }else if(Index.getRadioIndex().contains(em.toString())){
-                      float cell = Float.valueOf(cellRe.toString())*100;
-                      cellJson.put(em.toString(),cell+"%");
-                  }else{
-                      cellJson.put(em.toString(),cellRe.toString());
-                  }
+            ExcelReader excelReader2 = new ExcelReader(file,"备案表二");
 
-              }
-              else {
-                  cellJson.put(em.toString(),"");
-              }
-            }
-            RecordTable1 rd = new RecordTable1();
-            rd.setSummary(JSON.toJSONString(cellJson));
-            busiSummaryMapper.insert(rd);
+            ExcelReader excelReader3= new ExcelReader(file,"备案表二");
+
+
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    private void processSheet1(ExcelReader excelReader) {
+        Map<String,String> cellJson = new HashMap<>();
+        for (Sheet1CellMapping em : Sheet1CellMapping.values()) {
+          String col = em.toString().substring(0,1);
+          String row = em.toString().substring(1);
+          Object cellRe = excelReader.getCellData(Integer.valueOf(row),titleToNumber(col));
+          if (cellRe != null)
+          {
+              if(Index.getIntegerIndex().contains(em.toString())){
+                  int tmp = Float.valueOf(cellRe.toString()).intValue();
+                  cellJson.put(em.toString(),tmp+"");
+              }else if(Index.getRadioIndex().contains(em.toString())){
+                  float cell = Float.valueOf(cellRe.toString())*100;
+                  cellJson.put(em.toString(),cell+"%");
+              }else{
+                  cellJson.put(em.toString(),cellRe.toString());
+              }
+
+          }
+          else {
+              cellJson.put(em.toString(),"");
+          }
+        }
+        RecordTable1 rd = new RecordTable1();
+        rd.setSummary(JSON.toJSONString(cellJson));
+        busiSummaryMapper.insert(rd);
     }
 
     public int titleToNumber(String s) {
@@ -105,11 +116,5 @@ public class BusinessServiceImpl implements BusinessService
         }
     }
 
-
-
-    public static void main(String[] args) {
-        String abc = "15.23";
-        System.out.println(Float.valueOf(abc).intValue());
-    }
 
 }
