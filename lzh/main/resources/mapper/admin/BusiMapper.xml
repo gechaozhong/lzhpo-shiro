@@ -19,7 +19,9 @@
   </resultMap>
 
   <select id="laborEmployment"  resultMap="showBusiMap"  parameterType="java.lang.String">
-      SELECT * from busi_labor_employment
+      SELECT * from busi_labor_employment WHERE busi_labor_employment.organization_code =
+      (SELECT u.organization_code FROM sys_user u WHERE u.
+      id= #{userId} )
   </select>
 
   <delete id="removeOldData" parameterType="java.lang.String">

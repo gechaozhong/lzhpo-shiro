@@ -16,7 +16,9 @@
   </resultMap>
 
   <select id="querySummaryCompany"  resultMap="busiSummaryMapperMap"  parameterType="java.lang.String">
-      SELECT * from busi_summary
+       SELECT * from busi_summary WHERE busi_summary.organization_code =
+      (SELECT u.organization_code FROM sys_user u WHERE u.
+      id= #{sequence} )
   </select>
 
 
