@@ -24,6 +24,12 @@ public class User extends DataEntity<User> {
     private String loginName;
 
     /**
+     * 组织机构代码
+     */
+    @TableField("organization_code")
+    private String orgCode;
+
+    /**
      * 昵称
      */
     @TableField(value = "nick_name",strategy= FieldStrategy.IGNORED)
@@ -77,6 +83,14 @@ public class User extends DataEntity<User> {
 
     public void setLoginName(String loginName) {
         this.loginName = loginName;
+    }
+
+    public String getOrgCode() {
+        return orgCode;
+    }
+
+    public void setOrgCode(String orgCode) {
+        this.orgCode = orgCode;
     }
 
     public String getNickName() {

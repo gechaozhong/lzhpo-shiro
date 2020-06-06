@@ -35,7 +35,17 @@
             <input type="text" class="layui-input" name="loginName" lay-verify="required" placeholder="请输入登录名" th:value="${localuser.loginName}">
         </div>
     </div>
+
+
     <div class="layui-form-item">
+        <label class="layui-form-label">组织机<br>构代码</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="orgCode" lay-verify="required" placeholder="请输入组织机构代码" th:value="${localuser.orgCode}" >
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+
         <div class="layui-inline">
             <label class="layui-form-label">昵称</label>
             <div class="layui-input-block">

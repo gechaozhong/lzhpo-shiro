@@ -6,6 +6,7 @@
     <id property="id" column="id"/>
     <result property="loginName" column="login_name"/>
     <result property="nickName" column="nick_name"/>
+    <result property="orgCode" column="organization_code"/>
     <result property="tel" column="tel"/>
     <result property="email" column="email"/>
     <result property="password"  column="password"/>
@@ -34,6 +35,7 @@
       SELECT
       u.id,
       u.login_name,
+      u.organization_code,
       u.nick_name,
       u.tel,
       u.email,

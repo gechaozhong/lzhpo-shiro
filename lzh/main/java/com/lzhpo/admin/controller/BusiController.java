@@ -16,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.apache.shiro.SecurityUtils.getSubject;
+
 @Api
 @Controller
 @RequestMapping("admin/system/business")
@@ -51,11 +53,14 @@ public class BusiController {
     // 加上该注解，被认为是restful接口，
     @ResponseBody
     public ResponseEntity getRecordTable2(String seq){
+
+        Object currentUserId =  getSubject().getPrincipal();
+
         ResponseEntity res2 = ResponseEntity.success("ok");
+        System.out.println(currentUserId);
         res2.put("msg","success");
         res2.put("code","0");
         res2.put("data",recordTable2Service.getRecordTable2("1"));
-        System.out.println("***********"+recordTable2Service.getRecordTable2("1").size());
         return res2;
     }
 

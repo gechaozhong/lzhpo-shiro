@@ -21,6 +21,7 @@ layui.use(['layer','form','table'], function() {
         cols: [[
             {type:'checkbox'},
             {field:'loginName', title: '登录名称', width:'10%'},
+            {field:'orgCode',  title: '组织机构代码',    width:'10%'},
             {field:'nickName',  title: '昵称',    width:'10%'},
             {field:'email',     title: '邮箱',    width:'16%' },
             {field:'tel',       title: '电话',    width:'12%'},
