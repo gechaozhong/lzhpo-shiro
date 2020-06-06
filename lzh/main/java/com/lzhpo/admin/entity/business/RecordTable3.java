@@ -10,6 +10,17 @@ public class RecordTable3 {
     @TableId(type= IdType.AUTO)
     private Integer Id;
 
+    @TableField(value = "organization_code",strategy= FieldStrategy.IGNORED)
+    private String organizationCode;
+
+    public String getOrganizationCode() {
+        return organizationCode;
+    }
+
+    public void setOrganizationCode(String organizationCode) {
+        this.organizationCode = organizationCode;
+    }
+
     @TableField(value = "sequence",strategy= FieldStrategy.IGNORED)
     private String sequence;
 
@@ -44,7 +55,7 @@ public class RecordTable3 {
     private String whetherPayCompensation;
 
     @TableField(value = "compensation_amount",strategy= FieldStrategy.IGNORED)
-    private double compensationAmount;
+    private String compensationAmount;
 
     public Integer getId() {
         return Id;
@@ -142,11 +153,11 @@ public class RecordTable3 {
         this.whetherPayCompensation = whetherPayCompensation;
     }
 
-    public double getCompensationAmount() {
+    public String getCompensationAmount() {
         return compensationAmount;
     }
 
-    public void setCompensationAmount(double compensationAmount) {
+    public void setCompensationAmount(String compensationAmount) {
         this.compensationAmount = compensationAmount;
     }
 }

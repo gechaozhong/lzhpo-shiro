@@ -17,6 +17,9 @@ public class RecordTable1 {
     @TableField(value = "summary",strategy= FieldStrategy.IGNORED)
     private String summary;
 
+    @TableField(value = "organization_code",strategy= FieldStrategy.IGNORED)
+    private String organizationCode;
+
     @TableField(value = "reviewer",strategy= FieldStrategy.IGNORED)
     private String reviewer;
 
@@ -77,6 +80,14 @@ public class RecordTable1 {
 
     public Date getSubmitDate() {
         return submitDate;
+    }
+
+    public String getOrganizationCode() {
+        return organizationCode;
+    }
+
+    public void setOrganizationCode(String organizationCode) {
+        this.organizationCode = organizationCode;
     }
 
     public void setSubmitDate(Date submitDate) {

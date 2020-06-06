@@ -4,17 +4,15 @@ import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lzhpo.admin.entity.business.RecordTable1;
 import com.lzhpo.admin.entity.business.RecordTable2;
+import com.lzhpo.admin.entity.business.RecordTable3;
 import com.lzhpo.admin.mapper.BusiMapper;
+import com.lzhpo.admin.mapper.BusiResignedEmpMapper;
 import com.lzhpo.admin.mapper.BusiSummaryMapper;
 import com.lzhpo.admin.service.BusinessService;
 import com.lzhpo.common.business.Index;
 import com.lzhpo.common.util.ExcelReader;
 import com.lzhpo.common.util.Sheet1CellMapping;
-import org.apache.ibatis.session.ExecutorType;
-import org.apache.ibatis.session.SqlSession;
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,7 +23,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -39,29 +40,10 @@ public class BusinessServiceImpl extends ServiceImpl<BusiMapper, RecordTable2> i
 
     @Autowired
     BusiMapper busiMapper;
+    @Autowired
+    BusiResignedEmpMapper busiResignedEmpMapper;
 
-    @Qualifier("kwSqlSessionTemplate")
-    private SqlSessionTemplate sqlSessionTemplate;
-
-
-    private void batchInsert(List<RecordTable2> beanList) {
-        SqlSession session = sqlSessionTemplate.getSqlSessionFactory().openSession(ExecutorType.BATCH,false);
-        BusiMapper mapper = session.getMapper(BusiMapper.class);
-        try {
-            for (int i = 0;i<beanList.size();i++) {
-                mapper.insert(beanList.get(i));
-                if(i%1000==999 || i==beanList.size()-1) {
-                    session.commit();
-                    session.clearCache();
-                }
-            }
-        }catch(Exception e) {
-            e.printStackTrace();
-            session.rollback();
-        }finally {
-            session.close();
-        }
-    }
+    SimpleDateFormat simdate1=new SimpleDateFormat("yyyy-MM-dd");
 
 
     @Override
@@ -70,20 +52,20 @@ public class BusinessServiceImpl extends ServiceImpl<BusiMapper, RecordTable2> i
 
             File file =  multipartFileToFile(execlFile);
             ExcelReader excelReader = new ExcelReader(file,"备案表一");
-            processSheet1(excelReader);
+            String org_code = processSheet1(excelReader);
 
             ExcelReader excelReader2 = new ExcelReader(file,"备案表二");
-            processSheet2( excelReader2);
-            ExcelReader excelReader3= new ExcelReader(file,"备案表二");
-            processSheet3( excelReader3);
+            processSheet2(org_code, excelReader2);
+            ExcelReader excelReader3= new ExcelReader(file,"备案表三");
+            processSheet3(org_code, excelReader3);
 
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    private void processSheet2(ExcelReader excelReader2) throws ParseException {
-        SimpleDateFormat simdate1=new SimpleDateFormat("yyyy-MM-dd");
+    private void processSheet2(String org_code,ExcelReader excelReader2) throws ParseException {
+
         List<List<Object>> listData = excelReader2.getListData();
         List<RecordTable2> rdList = new LinkedList<>();
         for (int i = 2; i < listData.size(); i++) {
@@ -130,16 +112,80 @@ public class BusinessServiceImpl extends ServiceImpl<BusiMapper, RecordTable2> i
             if (lo.get(11)!=null &&!"".equals(lo.get(11))){
                 recordTable2.setDisabilityOrNot(lo.get(11).toString());
             }else {continue;}
+            if (org_code != null){
+               recordTable2.setOrganizationCode(org_code);
+            }else {continue;}
             busiMapper.insert(recordTable2);
         }
     }
 
-    private void processSheet3(ExcelReader excelReader3) {
+    private void processSheet3(String org_code,ExcelReader excelReader3) {
 
+        List<List<Object>> listData = excelReader3.getListData();
+
+        for (int i = 2; i < listData.size(); i++) {
+            RecordTable3 recordTable3 = new RecordTable3();
+            List<Object> lo2 =  listData.get(i);
+            if (lo2.get(0)!=null &&!"".equals(lo2.get(0))){
+                recordTable3.setSequence(lo2.get(0).toString().split("\\.")[0]);
+            }else {continue;}
+            if (lo2.get(1)!=null &&!"".equals(lo2.get(1))){
+                recordTable3.setName(lo2.get(1).toString());
+            }else {continue;}
+            if (lo2.get(2)!=null &&!"".equals(lo2.get(2))){
+                recordTable3.setSex(lo2.get(2).toString());
+            }else {continue;}
+            if (lo2.get(3)!=null &&!"".equals(lo2.get(3))){
+                recordTable3.setIdCard(lo2.get(3).toString());
+            }else {continue;}
+            if (lo2.get(4)!=null &&!"".equals(lo2.get(4))){
+                recordTable3.setWorkingYears(Double.valueOf(lo2.get(4).toString()).intValue());
+            }else {continue;}
+            if (lo2.get(5)!=null &&!"".equals(lo2.get(5))){
+                recordTable3.setCategoryTerminationContract(lo2.get(5).toString());
+            }else {continue;}
+
+            if (lo2.get(6)!=null &&!"".equals(lo2.get(6))){
+                recordTable3.setReasonForChange(lo2.get(6).toString());
+            }else {continue;}
+            if (lo2.get(7)!=null &&!"".equals(lo2.get(7))){
+                try {
+                    recordTable3.setLaborContractStartDate(simdate1.parse(lo2.get(7).toString()));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }else {continue;}
+            if (lo2.get(8)!=null &&!"".equals(lo2.get(8))){
+                try {
+                    recordTable3.setLaborContractEndDate(simdate1.parse(lo2.get(8).toString()));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }else {continue;}
+
+            if (lo2.get(9)!=null &&!"".equals(lo2.get(9))){
+                try {
+                    recordTable3.setRelieveLaborContractEndDate(simdate1.parse(lo2.get(9).toString()));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }else {continue;}
+
+            if (lo2.get(10)!=null &&!"".equals(lo2.get(10))){
+                recordTable3.setWhetherPayCompensation(lo2.get(10).toString());
+            }else {continue;}
+            if (lo2.get(11)!=null &&!"".equals(lo2.get(11))){
+                recordTable3.setCompensationAmount(lo2.get(11).toString());
+            }else {continue;}
+            if (org_code != null){
+                recordTable3.setOrganizationCode(org_code);
+            }else {continue;}
+            busiResignedEmpMapper.insert(recordTable3);
+        }
 
     }
 
-    private void processSheet1(ExcelReader excelReader) {
+    private String processSheet1(ExcelReader excelReader) {
         Map<String,String> cellJson = new HashMap<>();
         for (Sheet1CellMapping em : Sheet1CellMapping.values()) {
           String col = em.toString().substring(0,1);
@@ -164,7 +210,11 @@ public class BusinessServiceImpl extends ServiceImpl<BusiMapper, RecordTable2> i
         }
         RecordTable1 rd = new RecordTable1();
         rd.setSummary(JSON.toJSONString(cellJson));
+        String orgCode = cellJson.get("B6");
+        rd.setOrganizationCode(orgCode);
+        busiMapper.removeOldData(orgCode);
         busiSummaryMapper.insert(rd);
+        return orgCode ;
     }
 
     public int titleToNumber(String s) {

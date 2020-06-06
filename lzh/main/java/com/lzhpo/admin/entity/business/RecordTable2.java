@@ -10,11 +10,22 @@ import java.util.Date;
  * <p> Title：</p>
  * <p> Description：</p>
  */
-@TableName("labor_employment")
+@TableName("busi_labor_employment")
 public class RecordTable2 {
 
     @TableId(type= IdType.AUTO)
     private Integer Id;
+
+    public String getOrganizationCode() {
+        return organizationCode;
+    }
+
+    public void setOrganizationCode(String organizationCode) {
+        this.organizationCode = organizationCode;
+    }
+
+    @TableField(value = "organization_code",strategy= FieldStrategy.IGNORED)
+    private String organizationCode;
 
     @TableField(value = "sequence",strategy= FieldStrategy.IGNORED)
     private String sequence;
