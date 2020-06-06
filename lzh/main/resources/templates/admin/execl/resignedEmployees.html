@@ -80,11 +80,11 @@
                     ,{field:'workingYears', title:'本单位工<br>作年限(年)', width:100}
                     ,{field:'categoryTerminationContract', title:'合同终止/解<br>除人员类别\n', width:120}
                     ,{field:'reasonForChange', title:'变更原因', width:120, sort: true}
-                    ,{field:'laborContractStartDate', title:'劳动合同<br>开始时间', width:140,templet : "<div>{{layui.util.toDateString(d.ordertime, 'yyyy年MM月dd日 ')}}</div>"}
-                    ,{field:'laborContractEndDate', title:'劳动合同<br>结束时间', width:140,templet : "<div>{{layui.util.toDateString(d.ordertime, 'yyyy年MM月dd日 ')}}</div>"}
-                    ,{field:'relieveLaborContractEndDate', title:'劳动合同<br>解除时间', width:140,templet : "<div>{{layui.util.toDateString(d.ordertime, 'yyyy年MM月dd日 ')}}</div>"}
+                    ,{field:'laborContractStartDate', title:'劳动合同<br>开始时间', width:140,templet : "<div>{{layui.util.toDateString(d.laborContractStartDate, 'yyyy/MM/dd ')}}</div>"}
+                    ,{field:'laborContractEndDate', title:'劳动合同<br>结束时间', width:140,templet : "<div>{{layui.util.toDateString(d.laborContractEndDate, 'yyyy/MM/dd ')}}</div>"}
+                    ,{field:'relieveLaborContractEndDate', title:'劳动合同<br>解除时间', width:140,templet : "<div>{{layui.util.toDateString(d.relieveLaborContractEndDate, 'yyyy/MM/dd')}}</div>"}
                     ,{field:'whetherPayCompensation', title:'是否应<br>支付补偿' , width:100}
-                    ,{field:'compensationAmount', title:'赔偿金额', width:80}
+                    ,{field:'compensationAmount', title:'赔偿金额', width:100}
 
                 ]
             ]

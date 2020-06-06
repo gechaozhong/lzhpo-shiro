@@ -19,8 +19,13 @@
   </resultMap>
 
   <select id="laborEmployment"  resultMap="showBusiMap"  parameterType="java.lang.String">
-      SELECT * from labor_employment
+      SELECT * from busi_labor_employment
   </select>
 
-
+  <delete id="removeOldData" parameterType="java.lang.String">
+     DELETE  busi_summary,busi_resigned_employees,busi_labor_employment FROM busi_summary
+     left join busi_resigned_employees on busi_summary.organization_code = busi_resigned_employees.organization_code
+	 left join busi_labor_employment on busi_summary.organization_code = busi_labor_employment.organization_code
+    where busi_summary.organization_code =  #{orgCode}
+    </delete>
 </mapper>
