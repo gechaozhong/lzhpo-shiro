@@ -1,5 +1,6 @@
 package com.lzhpo.common.util;
 
+import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.ss.usermodel.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,7 +25,16 @@ public class ExcelReader {
     private boolean flag;
     private Logger logger = LoggerFactory.getLogger(ExcelReader.class);
 
-    public ExcelReader(File file,String sheetName) {
+    public List<List<Object>> getListData() {
+        getSheetData();
+        return listData;
+    }
+
+    public void setListData(List<List<Object>> listData) {
+        this.listData = listData;
+    }
+
+    public ExcelReader(File file, String sheetName) {
         this.filePath = file.getPath();
         this.sheetName = sheetName;
         this.flag = false;
@@ -62,14 +73,20 @@ public class ExcelReader {
             if (row != null) {
                 for (int j = 0; j < row.getLastCellNum(); j++) {
                     Cell cell = row.getCell(j);
-                    if (i == 0){
-                        columnHeaderList.add(String.valueOf(cell.getStringCellValue()));
-                    }
                     if(cell !=null){
+                        if (i == 0){
+                            columnHeaderList.add(String.valueOf(cell.getStringCellValue()));
+                        }
                          if (cell.getCellType().equals(CellType.STRING) ){
                              list.add(cell.getStringCellValue());
                          }else if (cell.getCellType().equals(CellType.NUMERIC) ){
-                             list.add(cell.getNumericCellValue());
+                             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                             if(HSSFDateUtil.isCellDateFormatted(cell)){
+                                 list.add(sdf.format(HSSFDateUtil.getJavaDate(cell.getNumericCellValue())));
+                             }else {
+                                 list.add(cell.getNumericCellValue());
+                             }
+
                          }else if (cell.getCellType().equals(CellType.BOOLEAN) ){
                              list.add(cell.getBooleanCellValue());
                          }else if (cell.getCellType().equals(CellType.BLANK) ){

@@ -32,10 +32,10 @@ public class RecordTable2 {
     private int workingYears;
 
     @TableField(value = "work_type",strategy= FieldStrategy.IGNORED)
-    private int workType;
+    private String workType;
 
     @TableField(value = "special_work_type",strategy= FieldStrategy.IGNORED)
-    private int specialWorkType;
+    private String specialWorkType;
 
     @TableField(value = "work_start_date",strategy= FieldStrategy.IGNORED)
     private Date workStartDate;
@@ -45,7 +45,6 @@ public class RecordTable2 {
 
     @TableField(value = "classification_registered_employees",strategy= FieldStrategy.IGNORED)
     private String classificationRegisteredEmployees;
-
 
     @TableField(value = "migrant_worker_or_not",strategy= FieldStrategy.IGNORED)
     private String migrantWorkerOrNot;
@@ -101,19 +100,19 @@ public class RecordTable2 {
         this.workingYears = workingYears;
     }
 
-    public int getWorkType() {
+    public String getWorkType() {
         return workType;
     }
 
-    public void setWorkType(int workType) {
+    public void setWorkType(String workType) {
         this.workType = workType;
     }
 
-    public int getSpecialWorkType() {
+    public String getSpecialWorkType() {
         return specialWorkType;
     }
 
-    public void setSpecialWorkType(int specialWorkType) {
+    public void setSpecialWorkType(String specialWorkType) {
         this.specialWorkType = specialWorkType;
     }
 
@@ -140,7 +139,6 @@ public class RecordTable2 {
     public void setClassificationRegisteredEmployees(String classificationRegisteredEmployees) {
         this.classificationRegisteredEmployees = classificationRegisteredEmployees;
     }
-
     public String getMigrantWorkerOrNot() {
         return migrantWorkerOrNot;
     }
