@@ -1,11 +1,11 @@
 package com.lzhpo.admin.controller;
 
-import com.lzhpo.admin.entity.business.RecordTable3;
 import com.lzhpo.admin.service.BusinessService;
 import com.lzhpo.admin.service.RecordTable1Service;
 import com.lzhpo.admin.service.RecordTable2Service;
 import com.lzhpo.admin.service.RecordTable3Service;
 import com.lzhpo.common.annotation.SysLog;
+import com.lzhpo.common.realm.AuthRealm;
 import com.lzhpo.common.util.ResponseEntity;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,16 +35,17 @@ public class BusiController {
     @Autowired
     BusinessService businessService;
 
-
+    AuthRealm.ShiroUser user;
 
     @GetMapping("recordTable1Data")
     @SysLog("获取备案表1的数据")
     @ResponseBody// 加上该注解，被认为是restful接口，
     public ResponseEntity getRecordTable1(String seq){
+        user =  (AuthRealm.ShiroUser)getSubject().getPrincipal();
         ResponseEntity res = ResponseEntity.success("ok");
         res.put("msg","success");
         res.put("code","0");
-        res.put("data",recordTable1Service.getRecordTable1("1"));
+        res.put("data",recordTable1Service.getRecordTable1(user.getId()));
         return res;
     }
 
@@ -54,13 +55,13 @@ public class BusiController {
     @ResponseBody
     public ResponseEntity getRecordTable2(String seq){
 
-        Object currentUserId =  getSubject().getPrincipal();
+        user =  (AuthRealm.ShiroUser)getSubject().getPrincipal();
 
         ResponseEntity res2 = ResponseEntity.success("ok");
-        System.out.println(currentUserId);
+
         res2.put("msg","success");
         res2.put("code","0");
-        res2.put("data",recordTable2Service.getRecordTable2("1"));
+        res2.put("data",recordTable2Service.getRecordTable2("1",user.getId()));
         return res2;
     }
 
@@ -69,12 +70,11 @@ public class BusiController {
     @SysLog("获取备案表3的数据")
     @ResponseBody// 加上该注解，被认为是restful接口，
     public ResponseEntity getRecordTable3(String seq){
+        user =  (AuthRealm.ShiroUser)getSubject().getPrincipal();
         ResponseEntity res = ResponseEntity.success("ok");
         res.put("msg","success");
         res.put("code","0");
-        List<RecordTable3> reList =  recordTable3Service3.getRecordTable3("1");
-        res.put("data",recordTable3Service3.getRecordTable3("1"));
-        System.out.println("***********"+recordTable3Service3.getRecordTable3("1").size());
+        res.put("data",recordTable3Service3.getRecordTable3(user.getId()));
         return res;
     }
 

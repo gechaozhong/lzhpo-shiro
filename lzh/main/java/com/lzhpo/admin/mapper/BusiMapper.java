@@ -12,6 +12,6 @@ import java.util.List;
 
 public interface BusiMapper extends BaseMapper<RecordTable2> {
 
-    List<RecordTable2> laborEmployment(String sequence);
+    List<RecordTable2> laborEmployment(String sequence,String userId);
     void removeOldData(String orgCode);
 }
