@@ -16,4 +16,5 @@ public interface BusiSummaryMapper extends BaseMapper<RecordTable1> {
     List<RecordTable1> querySummaryCompany(String sequence);
     void insertSummaryCompany(RecordTable1 rd);
 
+    List<RecordTable1> queryAppendingCase();
 }

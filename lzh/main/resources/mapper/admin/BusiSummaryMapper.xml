@@ -21,5 +21,8 @@
       id= #{sequence} )
   </select>
 
+  <select id="queryAppendingCase"  resultMap="busiSummaryMapperMap"  >
+       SELECT * from busi_summary WHERE busi_summary.reviewer is null
+  </select>
 
 </mapper>

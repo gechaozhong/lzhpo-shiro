@@ -22,4 +22,6 @@ public class RecordTable2Impl extends ServiceImpl<BusiMapper, RecordTable2> impl
     public List<RecordTable2> getRecordTable2(String sequenc,String userId) {
         return baseMapper.laborEmployment(sequenc,userId);
     }
+
+
 }

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="utf-8">
+    <title>社保信息管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel = "shortcut icon" href="${site.logo}">
+    <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}" media="all" />
+    <link rel="stylesheet" th:href="@{/static/admin/css/list.css}" media="all" />
+    <style>
+        .layui-table-cell {
+            height: auto;
+            white-space: normal;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<script type="text/javascript" th:src="@{/static/layui/layui.js}"></script>
+<script type="text/javascript" th:src="@{/static/admin/js/tools.js}"></script>
+<body>
+<div type="margin:10px;">
+    <div class="layui-form-item" style="margin-top: 10px">
+        <div class="layui-inline" >
+            <label class="layui-form-label">上级主管</label>
+            <div class="layui-input-inline">
+                <input name="phone"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">组织编号</label>
+            <div class="layui-input-inline">
+                <input type="text"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">单位名称</label>
+            <div class="layui-input-inline">
+                <input type="text"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <button class="layui-btn " data-type="reload">搜索</button>
+        </div>
+    </div>
+</div>
+<!--<div style="text-align:center">-->
+<!--    <table class="layui-hide" id="sheet2" lay-filter="test"></table>-->
+<!--</div>-->
+
+<div style="text-align: center;width:100%;">
+    <div class="layui-inline" style="width:100%;">
+        <table class="layui-hide" id="sheet2" style="margin: 0 auto;" lay-filter="test"></table>
+    </div>
+</div>
+
+
+
+</body>
+
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
+        table.render({
+            elem: '#sheet2'
+            ,url:'/admin/system/review/pendingApprovalData'
+            ,toolbar: '#toolbarDemo'
+            ,defaultToolbar: ['filter', 'exports', 'print', {
+                title: '提示'
+                ,layEvent: 'LAYTABLE_TIPS'
+                ,icon: 'layui-icon-tips'
+            }]
+            ,title: '用户数据表'
+            ,cols: [
+                [
+                    {field:'departmentName', title:'单位名称', width:120}
+                    ,{field:'organizationCode', title:'组织机构代码', width:120}
+                    ,{field:'LegalRepresentative', title:'法定代表人', width:120}
+                    ,{field:'superiorSupervisor', title:'上级主管', sort: true,width:120}
+                    ,{field:'commitTime', title:'提交时间', width:150,sort: true,rowspan: 2,templet : "<div>{{layui.util.toDateString(d.workStartDate, 'yyyy/MM/dd')}}</div>"}
+                    ,{field:'specialWorkType', title:'操  作', width:100}
+
+                ]
+            ]
+            ,page: true
+        }
+
+        );
+        table.on('toolbar(test)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch(obj.event){
+                case 'getCheckData':
+                    var data = checkStatus.data;
+                    layer.alert(JSON.stringify(data));
+                    break;
+                case 'getCheckLength':
+                    var data = checkStatus.data;
+                    layer.msg('选中了：'+ data.length + ' 个');
+                    break;
+                case 'isAll':
+                    layer.msg(checkStatus.isAll ? '全选': '未全选');
+                    break;
+
+                //自定义头工具栏右侧图标 - 提示
+                case 'LAYTABLE_TIPS':
+                    layer.alert('这是工具栏右侧自定义的一个图标按钮');
+                    break;
+            };
+        });
+        table.on('tool(test)', function(obj){
+            var data = obj.data;
+            //console.log(obj)
+            if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if(obj.event === 'edit'){
+                layer.prompt({
+                    formType: 2
+                    ,value: data.email
+                }, function(value, index){
+                    obj.update({
+                        email: value
+                    });
+                    layer.close(index);
+                });
+            }
+        });
+    });
+</script>
+
+
+</html>
