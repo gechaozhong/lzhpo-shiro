@@ -23,10 +23,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Service
@@ -212,6 +209,11 @@ public class BusinessServiceImpl extends ServiceImpl<BusiMapper, RecordTable2> i
         rd.setSummary(JSON.toJSONString(cellJson));
         String orgCode = cellJson.get("B6");
         rd.setOrganizationCode(orgCode);
+        rd.setCompanyName(cellJson.get("B3"));
+        rd.setLegalRepresentative(cellJson.get("H3"));
+        rd.setSuperiorSupervisor(cellJson.get("F4"));
+        rd.setSubmitDate(new Date());
+
         busiMapper.removeOldData(orgCode);
         busiSummaryMapper.insert(rd);
         return orgCode ;

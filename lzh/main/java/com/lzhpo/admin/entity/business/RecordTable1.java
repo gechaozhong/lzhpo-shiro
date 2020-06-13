@@ -20,6 +20,15 @@ public class RecordTable1 {
     @TableField(value = "organization_code",strategy= FieldStrategy.IGNORED)
     private String organizationCode;
 
+    @TableField(value = "company_name",strategy= FieldStrategy.IGNORED)
+    private String companyName;
+
+    @TableField(value = "legal_representative",strategy= FieldStrategy.IGNORED)
+    private String LegalRepresentative;
+
+    @TableField(value = "superior_supervisor",strategy= FieldStrategy.IGNORED)
+    private String superiorSupervisor;
+
     @TableField(value = "reviewer",strategy= FieldStrategy.IGNORED)
     private String reviewer;
 
@@ -116,5 +125,29 @@ public class RecordTable1 {
 
     public void setCommit(String commit) {
         this.commit = commit;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getLegalRepresentative() {
+        return LegalRepresentative;
+    }
+
+    public void setLegalRepresentative(String legalRepresentative) {
+        LegalRepresentative = legalRepresentative;
+    }
+
+    public String getSuperiorSupervisor() {
+        return superiorSupervisor;
+    }
+
+    public void setSuperiorSupervisor(String superiorSupervisor) {
+        this.superiorSupervisor = superiorSupervisor;
     }
 }

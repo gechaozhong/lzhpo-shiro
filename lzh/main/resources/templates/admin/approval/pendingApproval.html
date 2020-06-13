@@ -78,7 +78,10 @@
     </div>
 </div>
 </body>
-
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">审核</a>
+</script>
 <script>
     layui.use('table', function(){
         var table = layui.table;
@@ -94,13 +97,13 @@
             ,title: '用户数据表'
             ,cols: [
                 [
-                    {field:'departmentName', title:'单位名称', width:'15%'}
-                    ,{field:'organizationCode', title:'组织机构代码', width:'15%'}
-                    ,{field:'LegalRepresentative', title:'法定代表人', width:'10%'}
-                    ,{field:'superiorSupervisor', title:'上级主管', sort: true,width:'10%'}
-                    ,{field:'commitTime', title:'提交时间', width:'15%',sort: true,rowspan: 2,templet : "<div>{{layui.util.toDateString(d.workStartDate, 'yyyy/MM/dd')}}</div>"}
-                    ,{field:'specialWorkType', title:'操  作', width:'10%'}
-
+                     {field:'id', title:'提交编号', width:'10%' }
+                    ,{field:'companyName', title:'单位名称', width:'13%'}
+                    ,{field:'organizationCode', title:'组织机构代码', width:'17%'}
+                    ,{field:'legalRepresentative', title:'法定代表人', width:'15%'}
+                    ,{field:'superiorSupervisor', title:'上级主管', sort: true,width:'15%'}
+                    ,{field:'submitDate', title:'提交时间', width:'15%',sort: true,rowspan: 2,templet : "<div>{{layui.util.toDateString(d.workStartDate, 'yyyy/MM/dd')}}</div>"}
+                    ,{fixed: 'right',title:'操  作', width: '10%', align:'center', toolbar: '#barDemo'}
                 ]
             ]
             ,page: true

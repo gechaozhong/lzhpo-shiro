@@ -10,11 +10,9 @@ import com.lzhpo.common.util.ResponseEntity;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import static org.apache.shiro.SecurityUtils.getSubject;
 
@@ -38,7 +36,7 @@ public class ReviewController {
     AuthRealm.ShiroUser user;
 
     @GetMapping("pendingApprovalData")
-    @SysLog("获取备案表1的数据")
+    @SysLog("获取待审核数据")
     @ResponseBody// 加上该注解，被认为是restful接口，
     public ResponseEntity pendingApprovalData(){
         user =  (AuthRealm.ShiroUser)getSubject().getPrincipal();
@@ -84,25 +82,6 @@ public class ReviewController {
     }
 
 
-    @PostMapping("upload")
-    @ResponseBody
-    @SysLog("上传execl")
-    public ResponseEntity uploadExecl(@RequestParam("file") MultipartFile file){
 
-        ResponseEntity res = ResponseEntity.success("ok");
-        String name=file.getOriginalFilename();
-        String extString = name.substring(name.lastIndexOf("."));
-        if(!extString.equals(".xlsx")&&!extString.equals(".xls")){
-            List<Object>li=new ArrayList<>();
-            res.put("msg","文件格式错误");
-            res.put("code","-1");
-            return res;
-        }
-
-        businessService.uploadExeclService(file);
-        res.put("msg","success");
-        res.put("code","0");
-        return res;
-    }
 
 }
