@@ -24,6 +24,9 @@
 </head>
 <script type="text/javascript" th:src="@{/static/layui/layui.js}"></script>
 <script type="text/javascript" th:src="@{/static/admin/js/tools.js}"></script>
+
+
+
 <body>
 <div type="margin:10px;">
     <div class="layui-form-item" style="margin-top: 10px">
@@ -54,14 +57,26 @@
 <!--    <table class="layui-hide" id="sheet2" lay-filter="test"></table>-->
 <!--</div>-->
 
-<div style="text-align: center;width:100%;">
-    <div class="layui-inline" style="width:100%;">
-        <table class="layui-hide" id="sheet2" style="margin: 0 auto;" lay-filter="test"></table>
+<!--<div class="layui-body layui-tab-content site-demo site-demo-body">-->
+<!--    <div class="layui-tab-item layui-show">-->
+<!--        <div class="layui-main">-->
+
+<!--            <div id="LAY_preview">-->
+
+<!--                <table class="layui-hide" id="sheet2" style="margin: 0 auto;" lay-filter="test"></table>-->
+
+<!--            </div>-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<div  style="text-align: center;">
+    <div style="width: 100%;">
+        <table class="layui-hide" id="sheet2" style="width: 100%;" lay-filter="test"></table>
     </div>
 </div>
-
-
-
 </body>
 
 <script>
@@ -79,12 +94,12 @@
             ,title: '用户数据表'
             ,cols: [
                 [
-                    {field:'departmentName', title:'单位名称', width:120}
-                    ,{field:'organizationCode', title:'组织机构代码', width:120}
-                    ,{field:'LegalRepresentative', title:'法定代表人', width:120}
-                    ,{field:'superiorSupervisor', title:'上级主管', sort: true,width:120}
-                    ,{field:'commitTime', title:'提交时间', width:150,sort: true,rowspan: 2,templet : "<div>{{layui.util.toDateString(d.workStartDate, 'yyyy/MM/dd')}}</div>"}
-                    ,{field:'specialWorkType', title:'操  作', width:100}
+                    {field:'departmentName', title:'单位名称', width:'15%'}
+                    ,{field:'organizationCode', title:'组织机构代码', width:'15%'}
+                    ,{field:'LegalRepresentative', title:'法定代表人', width:'10%'}
+                    ,{field:'superiorSupervisor', title:'上级主管', sort: true,width:'10%'}
+                    ,{field:'commitTime', title:'提交时间', width:'15%',sort: true,rowspan: 2,templet : "<div>{{layui.util.toDateString(d.workStartDate, 'yyyy/MM/dd')}}</div>"}
+                    ,{field:'specialWorkType', title:'操  作', width:'10%'}
 
                 ]
             ]
